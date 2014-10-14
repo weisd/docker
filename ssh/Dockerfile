@@ -5,6 +5,10 @@ RUN apt-get -y install openssh-server
 
 ADD supervisord.conf /etc/supervisor/conf.d/nginx.conf
 
+RUN sed -i 's/^PermitRootLogin/#PermitRootLogin/g' /etc/ssh/sshd_config
+
+RUN echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
+
 RUN echo 'root:123123' | chpasswd
 
 RUN mkdir /data

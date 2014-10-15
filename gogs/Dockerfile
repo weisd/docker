@@ -1,10 +1,5 @@
-FROM ubuntu:14.04
+FROM weisd/ubuntu
 MAINTAINER im@weisd.in
-
-RUN apt-get update
-RUN apt-get install -y wget inotify-tools supervisor git
-
-#RUN apt-get -y install --only-upgrade bash
 
 WORKDIR /opt
 

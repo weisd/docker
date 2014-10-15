@@ -1,8 +1,6 @@
 FROM weisd/ubuntu
 MAINTAINER im@weisd.in
 
-useradd -m git
-
 WORKDIR /opt/gogs
 
 RUN wget http://gobuild3.qiniudn.com/github.com/gogits/gogs/tag-v-v0.5.5/gogs-linux-amd64.tar.gz && tar zxf gogs-linux-amd64.tar.gz

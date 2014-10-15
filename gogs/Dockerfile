@@ -1,19 +1,23 @@
 FROM weisd/ubuntu
 MAINTAINER im@weisd.in
 
-WORKDIR /opt/gogs
+RUN apt-get install -y openssh-server
+
+WORKDIR /opt
 
 RUN wget http://gobuild3.qiniudn.com/github.com/gogits/gogs/tag-v-v0.5.5/gogs-linux-amd64.tar.gz && tar zxf gogs-linux-amd64.tar.gz
 
-RUN mkdir /opt/gogs/custom
+RUN mkdir /opt/custom
 
 RUN useradd -m git
 
-ENV GOGS_PATH /opt/gogs
+ENV GOGS_PATH /opt
 ENV GOGS_CUSTOM_CONF_PATH $GOGS_PATH/custom/conf
 ENV GOGS_CUSTOM_CONF $GOGS_CUSTOM_CONF_PATH/app.ini
 
 RUN mkdir $GOGS_CUSTOM_CONF_PATH
+
+RUN chown -R git $GOGS_PATH
 
 USER git
 ENV HOME /home/git
@@ -21,8 +25,9 @@ ENV USER git
 ENV PATH $GOGS_PATH:$PATH
 
 RUN git config --global user.name "GoGS"
+RUN git config --global user.email "im@weisd.in"
 
-VOLUME /opt/gogs/custom
+VOLUME /opt/custom
 
 EXPOSE 3000
 

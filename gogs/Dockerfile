@@ -29,6 +29,6 @@ RUN git config --global user.email "im@weisd.in"
 
 VOLUME /opt/custom
 
-EXPOSE [3000, 22]
+EXPOSE 3000 22
 
 CMD ["gogs", "web"]
